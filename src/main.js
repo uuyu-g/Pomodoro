@@ -6,6 +6,8 @@ const {
   ipcMain
 } = require('electron');
 
+const Pomodoro = require('./pomodoro');
+
 // メインウィンドウ
 let mainWindow;
 
@@ -71,8 +73,11 @@ app.on('activate', () => {
  * @param {async}
  */
 ipcMain.on('async', (event, arg) => {
-  console.log(arg);
   let second = nowTime();
-  setTrayText(second);
+  let pomo = new Pomodoro("タスク名");
+  console.log(pomo);
+  let trayText = pomo.formatedText();
+  console.log(pomo.formatedText());
+  setTrayText(trayText);
 });
 
