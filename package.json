@@ -1,0 +1,15 @@
+{
+  "name": "mypomodoro",
+  "version": "1.0.0",
+  "description": "## やりたいこと 基本「Just Focus」 ＋ 記録が残せる ＋ ポモドーロ\b中にタスク名を表示",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^4.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
