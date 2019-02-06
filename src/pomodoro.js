@@ -67,7 +67,9 @@ class Pomodoro{
 			minutes = 0;
 			seconds = i;
 		}
-		const text = `[${this.taskName}] ${minutes}:${seconds}`;
+		//秒は桁を揃える
+		const paddedSecond = String(seconds).padStart(2,'0');
+		const text = `[${this.taskName}] ${minutes}:${paddedSecond}`;
 		return text;
 	}
 }

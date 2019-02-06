@@ -6,15 +6,22 @@
 </head>
 
 <body>
-  <input type="text" name="task_name" id="task_name" value="タスク名">
+  <input type="text" name="taskName" id="taskName" value="タスク名">
   <button>▶</button>
 </body>
 
 <script>
   const ipcRenderer = require('electron').ipcRenderer;
+  const element = document.querySelector('#taskName');
+  element.addEventListener('change', handleChange);
+  
+  const startPomodoro = (text) => {
+      ipcRenderer.send('async', text);
+  }
 
-  const startPomodoro = () => {
-      ipcRenderer.send('async', trayText);
+  function handleChange(event) {
+    const value = event.target.value;
+    startPomodoro(value);
   }
 </script>
 </html>

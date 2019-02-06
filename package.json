@@ -6,7 +6,9 @@
   "dependencies": {
     "electron": "^4.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "menubar": "^5.2.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
