@@ -1,0 +1,11 @@
+body {
+	display: flex;
+	align-items: center;
+	background: #333;
+	-webkit-app-region: drag; /* ドラッグ可能に */
+	/* -webkit-user-select: none; ドラッグはテキスト選択と競合するので禁止 */
+}
+
+/* body input {
+	-webkit-user-select: text;
+} */

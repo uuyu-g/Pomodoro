@@ -13,7 +13,9 @@ function createWindow() {
   // メインウィンドウを作成します
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600
+    height: 40,
+    frame: false,
+    show: false,
   });
 
   // メインウィンドウに表示するURLを指定します
@@ -21,7 +23,7 @@ function createWindow() {
   mainWindow.loadFile('index.html');
 
   // デベロッパーツールの起動
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // メインウィンドウが閉じられたときの処理
   mainWindow.on('closed', () => {
@@ -33,6 +35,21 @@ let trayIcon = null;
 
 function createTray() {
   trayIcon = new Tray(__dirname + '/icon24.png');
+  trayIcon.window = new BrowserWindow({
+    width: 800,
+    height: 40,
+    frame: false,
+    show: false,});
+  trayIcon.window.loadFile('index.html');
+
+  trayIcon.on('click', () => {
+    console.log('トレイアイコンがクリックされた')
+    if (trayIcon.window.isVisible()) {
+      trayIcon.window.hide();
+    } else {
+      trayIcon.window.show();
+    }
+  });
 }
 
 function setTrayText(text) {
@@ -41,7 +58,7 @@ function setTrayText(text) {
 
 //  初期化が完了した時の処理
 app.on('ready', () => {
-  createWindow();
+  // createWindow();
   createTray();
 });
 
@@ -60,11 +77,9 @@ app.on('activate', () => {
   }
 });
 
-
-
 const Pomodoro = require('./pomodoro');
 
 let pomo = new Pomodoro("タスク名");
-pomo.start('task', setTrayText);
+// pomo.start('task', setTrayText);
 
 
