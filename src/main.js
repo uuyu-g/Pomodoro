@@ -52,7 +52,7 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-// アプリケーションがアクティブになった時の処理(Macだと、Dockがクリックされた時）
+// アプリケーションがアクティブになった時の処理 （Macだと、Dockがクリックされた時）
 app.on('activate', () => {
   // メインウィンドウが消えている場合は再度メインウィンドウを作成する
   if (mainWindow === null) {
@@ -60,34 +60,11 @@ app.on('activate', () => {
   }
 });
 
-/**
- * ipc処理　非同期
- *
- * @param {async}
- */
-ipcMain.on('async', (event, arg) => {
-  // let pomo = new Pomodoro("タスク名");
-  console.log('async run');
-  // let trayText = pomo.formatedText();
-  // console.log(pomo.formatedText());
-  // coundDownが終わったらタイマーを消す
-  setTrayText(arg);
-});
+
 
 const Pomodoro = require('./pomodoro');
 
 let pomo = new Pomodoro("タスク名");
-
-let i = pomo.shortBreakTime * 60;
-const timer = setInterval(function() {
-  const trayText = pomo.formatedText();
-  setTrayText(trayText)
-  i--;
-  if (i === 0) {
-    clearInterval(timer);
-  }
-  console.log(i);
-}, 1000);
-
+pomo.start('task', setTrayText);
 
 

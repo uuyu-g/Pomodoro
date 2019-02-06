@@ -13,10 +13,9 @@
 
 <script>
   const ipcRenderer = require('electron').ipcRenderer;
-  const Pomodoro = require('./pomodoro');
 
-  let pomo = new Pomodoro("タスク名");
-  // console.log(pomo);
-
+  const startPomodoro = () => {
+      ipcRenderer.send('async', trayText);
+  }
 </script>
 </html>

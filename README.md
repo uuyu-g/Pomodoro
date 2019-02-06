@@ -18,9 +18,9 @@ Pomodoro
 
 setTask
 
-countDown()
+countDown()  
 	引数に時間をとる
-	引数の時間でカウントダウン
+	引数の時間でカウントダウン  
 	カウントダウンが終わったらtrueを返す
 countDown(task)
 	taskの時間でカウントダウン
@@ -29,3 +29,10 @@ countDown(shortBreak)
 countDown(longBreak)
 	タイマー。pomodoroTime分のカウントダウンタイマーを開始する
 	引数
+
+## やりたいこと
+[ ] GUIを作る
+[ ]  
+## 進捗
+### 2019/02/06
+
