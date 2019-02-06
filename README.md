@@ -8,3 +8,24 @@
 ＋ ソーシャル化
 
 ## 形態
+
+## Pomodoroクラス
+Pomodoro
+@taskName
+@pomodoroTime
+@shortBreakTime
+@longBreakTime
+
+setTask
+
+countDown()
+	引数に時間をとる
+	引数の時間でカウントダウン
+	カウントダウンが終わったらtrueを返す
+countDown(task)
+	taskの時間でカウントダウン
+	カウントダウンが終わったらtrueを返す。
+countDown(shortBreak)
+countDown(longBreak)
+	タイマー。pomodoroTime分のカウントダウンタイマーを開始する
+	引数

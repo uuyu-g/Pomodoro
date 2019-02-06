@@ -6,8 +6,6 @@ const {
   ipcMain
 } = require('electron');
 
-const Pomodoro = require('./pomodoro');
-
 // メインウィンドウ
 let mainWindow;
 
@@ -30,6 +28,7 @@ function createWindow() {
     mainWindow = null;
   });
 }
+
 let trayIcon = null;
 
 function createTray() {
@@ -40,16 +39,10 @@ function setTrayText(text) {
   trayIcon.setTitle(text);
 }
 
-function nowTime() {
-  const nowTime = new Date();
-  const second = nowTime.getSeconds();
-  return second.toString();
-}
-
 //  初期化が完了した時の処理
 app.on('ready', () => {
   createWindow();
-  createTray('テスト');
+  createTray();
 });
 
 // 全てのウィンドウが閉じたときの処理
@@ -73,11 +66,28 @@ app.on('activate', () => {
  * @param {async}
  */
 ipcMain.on('async', (event, arg) => {
-  let second = nowTime();
-  let pomo = new Pomodoro("タスク名");
-  console.log(pomo);
-  let trayText = pomo.formatedText();
-  console.log(pomo.formatedText());
-  setTrayText(trayText);
+  // let pomo = new Pomodoro("タスク名");
+  console.log('async run');
+  // let trayText = pomo.formatedText();
+  // console.log(pomo.formatedText());
+  // coundDownが終わったらタイマーを消す
+  setTrayText(arg);
 });
+
+const Pomodoro = require('./pomodoro');
+
+let pomo = new Pomodoro("タスク名");
+
+let i = pomo.shortBreakTime * 60;
+const timer = setInterval(function() {
+  const trayText = pomo.formatedText();
+  setTrayText(trayText)
+  i--;
+  if (i === 0) {
+    clearInterval(timer);
+  }
+  console.log(i);
+}, 1000);
+
+
 

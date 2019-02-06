@@ -13,10 +13,10 @@
 
 <script>
   const ipcRenderer = require('electron').ipcRenderer;
-  function getData(){
-      console.log('reload');
-      ipcRenderer.send('async', 'ping');
-    }
-  setInterval(getData, 1000);
+  const Pomodoro = require('./pomodoro');
+
+  let pomo = new Pomodoro("タスク名");
+  // console.log(pomo);
+
 </script>
 </html>

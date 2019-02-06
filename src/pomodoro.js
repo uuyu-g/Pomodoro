@@ -20,6 +20,16 @@ class Pomodoro{
 		return nowTime;
 	}
 
+	countDown() {
+		// const timer = setTimeout(() => {
+			
+		// }, 1000);
+		// if (i === 10) {
+		// 	clearInterval
+		// }
+		return true;
+	}
+
 	formatedText() {
 		const nowTime = this.nowTime()
 		const text = `[${this.taskName}] ${nowTime}`;
