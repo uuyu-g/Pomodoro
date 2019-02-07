@@ -2,7 +2,6 @@
 const {
   app,
   BrowserWindow,
-  Tray,
   ipcMain
 } = require('electron');
 const menubar = require('menubar');
@@ -12,6 +11,11 @@ let mainWindow;
 let mb = menubar({
   width:300,
   height:40,
+  webPreferences: {
+    defaultFontFamily: {
+      standard: 'Osaka-Mono',
+    }},
+  backgroundColor:'#333'
 });
 
 mb.on('ready', () => {
@@ -24,6 +28,8 @@ function createWindow() {
     width: 800,
     height: 40,
     frame: false,
+    fullscreen: true,
+    kiosk: true,
   });
 
   // メインウィンドウに表示するURLを指定します
@@ -97,7 +103,7 @@ ipcMain.on('async', (event, text) => {
     setTimeout(() => {
       resolve();
     },10000)
-    pomo.start(0.5, setTrayText);
+    pomo.start('task', setTrayText);
   })
   promise.then(() => {
     createWindow();
